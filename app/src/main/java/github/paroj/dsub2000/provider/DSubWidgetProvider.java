@@ -62,28 +62,18 @@ import github.paroj.dsub2000.util.Util;
 public class DSubWidgetProvider extends AppWidgetProvider {
     private static final String TAG = DSubWidgetProvider.class.getSimpleName();
 	private static DSubWidget4x1 instance4x1;
-	private static DSubWidget4x2 instance4x2;
-	private static DSubWidget4x3 instance4x3;
-	private static DSubWidget4x4 instance4x4;
+	private static DSubWidget2x2 instance2x2;
 
 	public static synchronized void notifyInstances(Context context, DownloadService service, boolean playing) {
 		if(instance4x1 == null) {
 			instance4x1 = new DSubWidget4x1();
 		}
-		if(instance4x2 == null) {
-			instance4x2 = new DSubWidget4x2();
-		}
-		if(instance4x3 == null) {
-			instance4x3 = new DSubWidget4x3();
-		}
-		if(instance4x4 == null) {
-			instance4x4 = new DSubWidget4x4();
+		if(instance2x2 == null) {
+			instance2x2 = new DSubWidget2x2();
 		}
 		
 		instance4x1.notifyChange(context, service, playing);
-		instance4x2.notifyChange(context, service, playing);
-		instance4x3.notifyChange(context, service, playing);
-		instance4x4.notifyChange(context, service, playing);
+		instance2x2.notifyChange(context, service, playing);
 	}
 
     @Override
@@ -109,9 +99,6 @@ public class DSubWidgetProvider extends AppWidgetProvider {
         final RemoteViews views = new RemoteViews(context.getPackageName(), getLayout());
 
         views.setTextViewText(R.id.artist, res.getText(R.string.widget_initial_text));
-		if(getLayout() == R.layout.appwidget4x2) {
-			views.setTextViewText(R.id.album, "");
-		}
 
         linkButtons(context, views, false);
 		performUpdate(context, null, appWidgetIds, false);
@@ -181,7 +168,6 @@ public class DSubWidgetProvider extends AppWidgetProvider {
         
         String title = currentPlaying == null ? null : currentPlaying.getTitle();
         CharSequence artist = currentPlaying == null ? null : currentPlaying.getArtist();
-		CharSequence album = currentPlaying == null ? null : currentPlaying.getAlbum();
         CharSequence errorState = null;
 
         // Show error message?
@@ -199,7 +185,6 @@ public class DSubWidgetProvider extends AppWidgetProvider {
             // Show error state to user
         	views.setTextViewText(R.id.title,null);
             views.setTextViewText(R.id.artist, errorState);
-			views.setTextViewText(R.id.album, "");
 			if(getLayout() != R.layout.appwidget4x1) {
 				views.setImageViewResource(R.id.appwidget_coverart, R.drawable.appwidget_art_default);
 			}
@@ -207,9 +192,6 @@ public class DSubWidgetProvider extends AppWidgetProvider {
             // No error, so show normal titles
             views.setTextViewText(R.id.title, title);
             views.setTextViewText(R.id.artist, artist);
-			if(getLayout() != R.layout.appwidget4x1) {
-				views.setTextViewText(R.id.album, album);
-			}
         }
 
         // Set correct drawable for pause state
@@ -222,7 +204,7 @@ public class DSubWidgetProvider extends AppWidgetProvider {
         // Set the cover art
         try {
             boolean large = false;
-			if(getLayout() != R.layout.appwidget4x1 && getLayout() != R.layout.appwidget4x2) {
+			if(getLayout() != R.layout.appwidget4x1) {
 				large = true;
 			}
 			ImageLoader imageLoader = SubsonicActivity.getStaticImageLoader(context);
@@ -255,7 +237,7 @@ public class DSubWidgetProvider extends AppWidgetProvider {
 
         final int color = 0xff424242;
         final Paint paint = new Paint();
-        final float roundPx = 10;
+        final float roundPx = 24;
 
         // Add extra width to the rect so the right side wont be rounded.
         final Rect rect = new Rect(0, 0, bitmap.getWidth() + (int) roundPx, bitmap.getHeight());

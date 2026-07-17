@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="appwidget_text">#FFFFFF</color>
+    <color name="appwidget_text">#191C20</color>
+    <color name="appwidget_bg">#F8F9FF</color>
+    <color name="appwidget_icon">#191C20</color>
 	<color name="overlayColor">#80000000</color>
 
 	<color name="holo_blue_light">#ff33b5e5</color>
@@ -8,9 +10,41 @@
 	<color name="holo_green_light">#ff99cc00</color>
 	<color name="holo_red_light">#ffff4444</color>
 
-	<color name="lightPrimary">#2196f3</color>
-	<color name="lightPrimaryDark">#0d47a1</color>
-	<color name="lightAccent">#448aff</color>
+	<!-- Material 3 Light Palette -->
+	<color name="m3_light_primary">#0061A4</color>
+	<color name="m3_light_onPrimary">#FFFFFF</color>
+	<color name="m3_light_primaryContainer">#D1E4FF</color>
+	<color name="m3_light_onPrimaryContainer">#001D36</color>
+	<color name="m3_light_secondary">#535F70</color>
+	<color name="m3_light_onSecondary">#FFFFFF</color>
+	<color name="m3_light_secondaryContainer">#D7E3F7</color>
+	<color name="m3_light_onSecondaryContainer">#101C2B</color>
+	<color name="m3_light_surface">#F8F9FF</color>
+	<color name="m3_light_onSurface">#191C20</color>
+	<color name="m3_light_surfaceVariant">#DFE2EB</color>
+	<color name="m3_light_onSurfaceVariant">#43474E</color>
+	<color name="m3_light_outline">#73777F</color>
+
+	<!-- Material 3 Dark Palette -->
+	<color name="m3_dark_primary">#00497D</color>
+	<color name="m3_dark_onPrimary">#FFFFFF</color>
+	<color name="m3_dark_primaryContainer">#003258</color>
+	<color name="m3_dark_onPrimaryContainer">#D1E4FF</color>
+	<color name="m3_dark_secondary">#BBC7DB</color>
+	<color name="m3_dark_onSecondary">#253140</color>
+	<color name="m3_dark_secondaryContainer">#3B4858</color>
+	<color name="m3_dark_onSecondaryContainer">#D7E3F7</color>
+	<color name="m3_dark_surface">#111318</color>
+	<color name="m3_dark_onSurface">#E2E2E9</color>
+	<color name="m3_dark_surfaceVariant">#43474E</color>
+	<color name="m3_dark_onSurfaceVariant">#C3C7CF</color>
+	<color name="m3_dark_outline">#8D9199</color>
+	<color name="m3_dark_surfaceContainer">#1D2024</color>
+	<color name="m3_dark_surfaceContainerHigh">#282A2F</color>
+
+	<color name="lightPrimary">#0061A4</color>
+	<color name="lightPrimaryDark">#00497D</color>
+	<color name="lightAccent">#D1E4FF</color>
 	<color name="lightElement">#A0000000</color>
 
 

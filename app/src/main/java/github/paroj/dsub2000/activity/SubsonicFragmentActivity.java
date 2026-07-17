@@ -32,6 +32,8 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import androidx.activity.OnBackPressedCallback;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AlertDialog;
@@ -162,6 +164,31 @@ public class SubsonicFragmentActivity extends SubsonicActivity implements Downlo
 			lastSelectedPosition = R.id.drawer_downloading;
 		}
 		setContentView(R.layout.abstract_fragment_activity);
+
+		ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.slide_up_panel), (v, windowInsets) -> {
+			var insets = windowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+			v.setPadding(0, 0, 0, insets.bottom);
+			
+			View mainToolbar = findViewById(R.id.main_toolbar);
+			if (mainToolbar != null) {
+				var params = mainToolbar.getLayoutParams();
+				if (params instanceof android.view.ViewGroup.MarginLayoutParams marginParams) {
+					marginParams.topMargin = insets.top;
+					mainToolbar.setLayoutParams(marginParams);
+				}
+			}
+			
+			View nowPlayingToolbar = findViewById(R.id.now_playing_toolbar);
+			if (nowPlayingToolbar != null) {
+				var params = nowPlayingToolbar.getLayoutParams();
+				if (params instanceof android.view.ViewGroup.MarginLayoutParams marginParams) {
+					marginParams.topMargin = insets.top;
+					nowPlayingToolbar.setLayoutParams(marginParams);
+				}
+			}
+
+			return windowInsets;
+		});
 
 		if (findViewById(R.id.fragment_container) != null && savedInstanceState == null) {
 			String fragmentType = getIntent().getStringExtra(Constants.INTENT_EXTRA_FRAGMENT_TYPE);

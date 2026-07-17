@@ -28,9 +28,9 @@
 				android:layout_gravity="top|start"
 				android:drawablePadding="6dip"
 				android:gravity="start"
-				android:paddingRight="6dp"
-				android:textAppearance="?android:attr/textAppearanceMedium"
-				android:textColor="?android:textColorPrimary" />
+				android:paddingRight="8dp"
+				android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+				android:textColor="?attr/colorOnSurface" />
 
 			<TextView
 				android:id="@+id/song_title"
@@ -42,8 +42,8 @@
 				android:ellipsize="marquee"
 				android:paddingRight="6dp"
 				android:singleLine="true"
-				android:textAppearance="?android:attr/textAppearanceMedium"
-				android:textColor="?android:textColorPrimary" />
+				android:textAppearance="@style/TextAppearance.Material3.TitleMedium"
+				android:textColor="?attr/colorOnSurface" />
 
 			<ImageButton
 				android:id="@+id/song_bookmark"

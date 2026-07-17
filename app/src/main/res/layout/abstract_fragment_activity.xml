@@ -12,7 +12,8 @@
 
 	<FrameLayout
 		android:layout_width="match_parent"
-		android:layout_height="match_parent">
+		android:layout_height="match_parent"
+		android:background="?attr/colorSurface">
 
 		<androidx.appcompat.widget.Toolbar
 			android:id="@+id/main_toolbar"
@@ -36,7 +37,7 @@
 			android:id="@+id/slide_up_swipe_target"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:background="?attr/actionbarNowPlayingBackgroundColor">
+			android:padding="8dp">
 
 			<androidx.appcompat.widget.Toolbar
 				android:id="@+id/now_playing_toolbar"
@@ -49,18 +50,21 @@
 
 			<LinearLayout
 				android:id="@+id/bottom_bar"
-				android:layout_width="fill_parent"
+				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				style="@style/BasicButton"
+				android:background="@drawable/card_rounded_corners"
 				android:orientation="horizontal"
-				android:elevation="4dp">
+				android:elevation="8dp"
+				android:padding="4dp">
 
 				<github.paroj.dsub2000.view.RecyclingImageView
 					android:id="@+id/album_art"
-					android:layout_width="?attr/actionBarSize"
-					android:layout_height="?attr/actionBarSize"
-					android:layout_gravity="left|center"
-					android:scaleType="fitCenter"/>
+					android:layout_width="56dp"
+					android:layout_height="56dp"
+					android:layout_gravity="center"
+					android:scaleType="centerCrop"
+					android:clipToOutline="true"
+					android:background="@drawable/card_rounded_corners"/>
 
 				<LinearLayout
 					android:layout_width="0dp"

@@ -35,6 +35,11 @@ import android.os.Handler;
 import com.google.android.material.navigation.NavigationView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.activity.EdgeToEdge;
+import androidx.activity.SystemBarStyle;
+import android.graphics.Color;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -139,6 +144,10 @@ public class SubsonicActivity extends AppCompatActivity implements OnItemSelecte
 
 	@Override
 	protected void onCreate(Bundle bundle) {
+		EdgeToEdge.enable(this, 
+			SystemBarStyle.dark(Color.BLACK),
+			SystemBarStyle.dark(Color.TRANSPARENT)
+		);
 		UiModeManager uiModeManager = (UiModeManager) getSystemService(UI_MODE_SERVICE);
 		if (uiModeManager.getCurrentModeType() == Configuration.UI_MODE_TYPE_TELEVISION) {
 			// tv = true;
@@ -150,7 +159,6 @@ public class SubsonicActivity extends AppCompatActivity implements OnItemSelecte
 
 		setUncaughtExceptionHandler();
 		applyTheme();
-		applyFullscreen();
 		super.onCreate(bundle);
 		DownloadService.startService(this);
 		setVolumeControlStream(AudioManager.STREAM_MUSIC);
@@ -1007,15 +1015,6 @@ public class SubsonicActivity extends AppCompatActivity implements OnItemSelecte
 	}
 	private void applyFullscreen() {
 		fullScreen = Util.getPreferences(this).getBoolean(Constants.PREFERENCES_KEY_FULL_SCREEN, false);
-		if(fullScreen || isTv()) {
-			// Hide additional elements on higher Android versions
-			int flags = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION |
-					View.SYSTEM_UI_FLAG_FULLSCREEN |
-					View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
-
-			getWindow().getDecorView().setSystemUiVisibility(flags);
-			getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-		}
 	}
 
 	public boolean isDestroyedCompat() {
